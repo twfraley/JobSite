@@ -14,13 +14,13 @@ import os
 import environ
 
 ROOT_DIR = environ.Path(__file__) - 2  # (jobsite/RecruitRooster/settings.py - 2 = jobsite
-
 env = environ.Env()
+
+# Reads local .env file
+env.read_env(str(ROOT_DIR.path('.env')))
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-env.read_env(str(ROOT_DIR.path('.env')))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -29,7 +29,7 @@ env.read_env(str(ROOT_DIR.path('.env')))
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -61,7 +61,7 @@ ROOT_URLCONF = 'RecruitRooster.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'jobsite/templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -127,5 +127,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# TODO: Set up Media Root for resume/cover letter uploads
+# TODO: Set up Media Root (or static_url?) for resume/cover letter uploads
 MEDIA_ROOT = ''

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+    {# requires "load static" inside block tags or else static files don't work #}
+    {% load static %}
+    Index Works <img src="{% static "images/babyphoto.jpg" %}" alt="test image"/>
+{% endblock %}

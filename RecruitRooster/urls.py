@@ -18,6 +18,7 @@ from django.urls import path
 
 from jobsite.views import index, job_list, job_create, job_delete, job_detail
 
+# Typically would spread URL files into each namespace, but not needed with a small app like this
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
