@@ -11,14 +11,14 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-import environ
+# import environ
 import django_heroku
 
-ROOT_DIR = environ.Path(__file__) - 2  # (jobsite/RecruitRooster/settings.py - 2 = jobsite
-env = environ.Env()
+# ROOT_DIR = environ.Path(__file__) - 2  # (jobsite/RecruitRooster/settings.py - 2 = jobsite
+# env = environ.Env()
 
 # Reads local .env file
-env.read_env(str(ROOT_DIR.path('.env')))
+# env.read_env(str(ROOT_DIR.path('.env')))
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,10 +27,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+# SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = '(3e&i+yno7oc72+zu!c4_xc7@67!8crkvic8)5#-%14yk@+@%a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+# DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
