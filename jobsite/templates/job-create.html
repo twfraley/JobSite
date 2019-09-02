@@ -1,9 +1,14 @@
 {% extends "base.html" %}
 
+{% block css %}
+    {# requires "load static" inside block tags or else static files don't work #}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "CSS/main.css" %}">
+{% endblock %}
+
 {% block title %}Create a Job{% endblock %}
 
 {% block content %}
-    {# requires "load static" inside block tags or else static files don't work #}
-    {% load static %}
+    <div class="header-spacer"></div>
     Job Create Works
 {% endblock %}

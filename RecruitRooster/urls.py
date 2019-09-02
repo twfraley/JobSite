@@ -16,14 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from jobsite.views import index, job_list, job_create, job_delete, job_detail
+from jobsite.views import index, job_list, job_create, job_delete, job_detail, login, application_create, \
+    application_detail, application_list
 
 # Typically would spread URL files into each namespace, but not needed with a small app like this
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
+    path('login/', login, name='login'),
     path('job-list/', job_list, name='job_list'),
     path('job-detail/<int:pk>/', job_detail, name='job_detail'),
     path('job-create/', job_create, name='job_create'),
     path('job-delete/<int:pk>/', job_delete, name='job_delete'),
+    path('application-create/', application_create, name='application_create'),
+    path('application-list/', application_list, name='application_list'),
+    path('application-detail/', application_detail, name='application_detail'),
 ]

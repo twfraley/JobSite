@@ -23,9 +23,9 @@
 
 {% block title %}Index{% endblock %}
 
-<!-- boilerplate Bootstrap-enabled example front-end -->
 {% block content %}
-    {# Index Works <img src="{% static "images/babyphoto.jpg" %}" alt="test image"/> #}
+
+    <div class="header-spacer"></div>
 
     <main role="main">
         <div class="jumbotron jumbotron-fluid px-5 index-jumbotron" style="background-image: url('{% static 'images/jumbotron_background.jpg' %}'); background-size: cover; background-position: center center;">
@@ -36,13 +36,7 @@
             </div>
         </div>
 
-        <!-- Marketing messaging and featurettes
-        ================================================== -->
-        <!-- Wrap the rest of the page in another container to center all the content. -->
-
         <div class="container marketing">
-
-            <!-- BOOTSTRAP DEMO FEATURETTES -->
 
             <hr class="featurette-divider">
 
@@ -95,8 +89,6 @@
 
             <hr class="featurette-divider">
 
-            <!-- /END THE FEATURETTES -->
-
-        </div><!-- /.container -->
+        </div>
     </main>
 {% endblock %}

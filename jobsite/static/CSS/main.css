@@ -1,6 +1,8 @@
+.header-spacer {
+    height: 50px;
+}
 .index-jumbotron {
-    height: 50vh;
-    padding-top: 15vh;
+    height: 45vh;
 }
 .index_placeholder_image {
     width: 400px;
