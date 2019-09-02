@@ -91,6 +91,7 @@ def job_delete(request, pk):
 
 # Create a new application by User pk
 # TODO: make this launchable from particular job page
+# TODO: make POST method actually do something
 def application_create(request, pk):
     user = request.user
     form = ApplicationForm()

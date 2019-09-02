@@ -19,7 +19,7 @@
 
             <form action="{% url 'job_create' %}" method="POST">
                 {% csrf_token %}
-                <p>Create a Job</p>
+                <h1>Create a Job</h1>
 
                 {{ form|crispy }}
 

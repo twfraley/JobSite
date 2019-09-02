@@ -16,6 +16,7 @@
 
     <!-- Search Bar -->
     <form action="{% url 'job_search' %}" method="get">
+        {% csrf_token %}
         <div class="form-group">
             <input name="q" type="text" placeholder="Search..." class="form-control">
             <input type="submit" value="Submit" class="btn btn-dark">
