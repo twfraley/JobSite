@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'jobsite',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -82,6 +83,8 @@ TEMPLATES = [
         },
     },
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 WSGI_APPLICATION = 'RecruitRooster.wsgi.application'
 

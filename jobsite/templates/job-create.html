@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block css %}
     {# requires "load static" inside block tags or else static files don't work #}
@@ -10,5 +11,21 @@
 
 {% block content %}
     <div class="header-spacer"></div>
-    Job Create Works
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            {% if error_message %} <p><strong>{{ error_message }}</strong></p>{% endif %}
+
+            <form action="{% url 'job_create' %}" method="POST">
+                {% csrf_token %}
+                <p>Create a Job</p>
+
+                {{ form|crispy }}
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
 {% endblock %}
