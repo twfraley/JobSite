@@ -56,8 +56,9 @@ class Job(models.Model):
     description = models.TextField()
     title = models.CharField(max_length=50)
     address_one = models.CharField(max_length=120)
-    address_two = models.CharField(max_length=120)
+    address_two = models.CharField(max_length=120, blank=True)
     state = models.ForeignKey(Province, on_delete=models.PROTECT)
+    date_posted = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title

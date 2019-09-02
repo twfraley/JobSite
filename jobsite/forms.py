@@ -6,7 +6,7 @@ from jobsite.models import Application, Job, User
 class JobForm(forms.ModelForm):
     class Meta:
         model = Job
-        fields = ['company_name', 'description', 'title', 'address_one', 'address_two', 'state']
+        fields = ['company_name', 'description', 'title', 'address_one', 'state']
 
 
 class ApplicationForm(forms.ModelForm):

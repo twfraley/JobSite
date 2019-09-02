@@ -18,10 +18,13 @@ def login(request):
 
 
 # List of all jobs
-# TODO: make list and list template
+# TODO: make list template
 # TODO: support search
 def job_list(request):
-    context = {}
+    jobs = Job.objects.all()
+    context = {
+        'jobs': jobs,
+    }
     return render(request, 'job-list.html', context)
 
 
@@ -47,7 +50,6 @@ def job_create(request):
                 description=form.cleaned_data['description'],
                 title=form.cleaned_data['title'],
                 address_one=form.cleaned_data['address_one'],
-                address_two=form.cleaned_data['address_two'],
                 state=form.cleaned_data['state'],
             )
             job.save()

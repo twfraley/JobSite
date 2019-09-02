@@ -3,6 +3,7 @@
 }
 .index-jumbotron {
     height: 45vh;
+    min-height: 250px;
 }
 .index_placeholder_image {
     width: 400px;
