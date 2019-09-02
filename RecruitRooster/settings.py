@@ -36,7 +36,7 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = '(3e&i+yno7oc72+zu!c4_xc7@67!8crkvic8)5#-%14yk@+@%a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = env('DEBUG')
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -135,7 +135,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# TODO: Set up Media Root (or static_url?) for resume/cover letter uploads
+# TODO: Set up Media Root (or update static_url?) for resume/cover letter uploads
 # MEDIA_ROOT = ''
 
 django_heroku.settings(locals())

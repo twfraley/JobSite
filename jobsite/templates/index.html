@@ -1,9 +1,126 @@
 {% extends "base.html" %}
 
+{% block css %}
+    {# requires "load static" inside block tags on templates or else static files don't work #}
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static "CSS/main.css" %}">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+{% endblock %}
+
 {% block title %}Index{% endblock %}
 
+<!-- boilerplate Bootstrap-enabled example front-end -->
 {% block content %}
-    {# requires "load static" inside block tags or else static files don't work #}
-    {% load static %}
-    Index Works <img src="{% static "images/babyphoto.jpg" %}" alt="test image"/>
+    {# Index Works <img src="{% static "images/babyphoto.jpg" %}" alt="test image"/> #}
+
+    <main role="main">
+        <div class="jumbotron jumbotron-fluid px-5 index-jumbotron">
+            <div class="container mx-5">
+                <h1 class="display-4 font-weight-bold">JobSearch!</h1>
+                <p class="lead">Welcome to Thomas Fraley's demo JobSearch site!</p>
+                <p class="text-muted">Created with Django and Bootstrap, and running on Heroku</p>
+            </div>
+        </div>
+
+        <!-- Marketing messaging and featurettes
+        ================================================== -->
+        <!-- Wrap the rest of the page in another container to center all the content. -->
+
+        <div class="container marketing">
+
+            <!-- BOOTSTRAP DEMO FEATURETTES -->
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">First awesome reason to work here.
+                        <span class="text-muted">It’ll blow your mind.</span></h2>
+                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis
+                        euismod
+                        semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus
+                        ac
+                        cursus
+                        commodo.</p>
+                </div>
+                <div class="col-md-5">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                         height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+                         focusable="false"
+                         role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title>
+                        <rect fill="#eee" width="100%" height="100%"/>
+                        <text fill="#aaa" dy=".3em" x="50%" y="50%">500x500</text>
+                    </svg>
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7 order-md-2">
+                    <h2 class="featurette-heading">Second hip reason to work here.
+                        <span class="text-muted">See for yourself.</span>
+                    </h2>
+                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis
+                        euismod
+                        semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus
+                        ac
+                        cursus
+                        commodo.</p>
+                </div>
+                <div class="col-md-5 order-md-1">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                         height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+                         focusable="false"
+                         role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title>
+                        <rect fill="#eee" width="100%" height="100%"/>
+                        <text fill="#aaa" dy=".3em" x="50%" y="50%">500x500</text>
+                    </svg>
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">And lastly, third reason!
+                        <span class="text-muted">Checkmate.</span></h2>
+                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis
+                        euismod
+                        semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus
+                        ac
+                        cursus
+                        commodo.</p>
+                </div>
+                <div class="col-md-5">
+                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                         height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+                         focusable="false"
+                         role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title>
+                        <rect fill="#eee" width="100%" height="100%"/>
+                        <text fill="#aaa" dy=".3em" x="50%" y="50%">500x500</text>
+                    </svg>
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <!-- /END THE FEATURETTES -->
+
+        </div><!-- /.container -->
+    </main>
 {% endblock %}
