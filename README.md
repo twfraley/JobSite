@@ -5,7 +5,7 @@ Created by Thomas Fraley using Django, hosted on Heroku.
 Web app is live here: https://safe-mesa-54979.herokuapp.com/
 
 ## About the App
-The app incorporates a searchable PostgreSQL database of jobs to which an applicant can apply.  The site supports resume and cover letter uploads as part of the application process.
+The JobSite! web app is a side project made by Thomas Fraley.  JobSite is a fictitious company that needed a new talent acquisition page.  To solve their hiring woes, I made a super slick job site for the company.  It features a searchable list of jobs (managed by JobSite personell) to which anyone can apply.  The applicant can upload their resume and cover letter in response to a job posting.  JobSite personell can then interact with the applications through the Django admin site.
 
 ## Running the app
 _The following assumes you're on macOS or linux.  If you're on Windows, well then you're on your own.  Unfortunately I don't have the capability to test this on Windows at the moment._
