@@ -20,7 +20,7 @@ class User(UserModel):
 
     street = models.TextField(max_length=50)
     city = models.TextField(max_length=50)
-    state = models.ForeignKey(Provence, on_delete=models.SET_NULL, null=True)
+    state = models.ForeignKey(Provence, on_delete=models.PROTECT)
 
     # Returns first + last name if the user has provided them. Otherwise returns required username
     def __str__(self):
@@ -57,7 +57,7 @@ class Job(models.Model):
     title = models.CharField(max_length=50)
     address_one = models.CharField(max_length=120)
     address_two = models.CharField(max_length=120)
-    state = models.ForeignKey(Provence, on_delete=models.CASCADE)
+    state = models.ForeignKey(Provence, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.title
@@ -65,14 +65,20 @@ class Job(models.Model):
 
 class Application(models.Model):
     """
-    Foreign Keys linking User and Job.
+    Foreign Key linking Job.
     Includes both text field and file uploads for cover letter and resume (for now?)
     """
+    # User Foreign Key relationship - not needed for simple application
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_firstname = models.CharField(max_length=30)
+    user_lastname = models.CharField(max_length=30)
+    user_email = models.EmailField()
+    user_city = models.CharField(max_length=50)
+    user_state = models.ForeignKey(Provence, on_delete=models.PROTECT)
     job = models.ForeignKey(Job, on_delete=models.SET_NULL, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
-    cover_letter = models.TextField()
-    cover_letter_attachment = models.FileField(upload_to='documents/cover_letters/')
-    resume = models.TextField()
-    resume_attachment = models.FileField(upload_to='documents/resumes/')
+    cover_letter = models.TextField(blank=True)
+    cover_letter_attachment = models.FileField(upload_to='documents/cover_letters/', blank=True)
+    resume = models.TextField(blank=True)
+    resume_attachment = models.FileField(upload_to='documents/resumes/', blank=True)
