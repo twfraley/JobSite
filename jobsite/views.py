@@ -18,27 +18,24 @@ def login(request):
 
 
 # List of all jobs
+# TODO: make list and list template
 # TODO: support search
 def job_list(request):
     context = {}
     return render(request, 'job-list.html', context)
 
 
-# Detail of one job by Job pk.  Also supports job delete
+# Detail of one job by Job pk.
+# TODO: make this
 def job_detail(request, pk):
     job = Job.objects.get(pk=pk)
-
-    if request.method == 'DELETE':
-        job.objects.delete(pk=pk)
-        return HttpResponseRedirect('job_list')
-
     context = {
         'job': job,
     }
     return render(request, 'job-detail.html', context)
 
 
-# Create a new Job
+# Create a new Job.  TODO: move this exclusively to Django admin
 def job_create(request):
     form = JobForm()
 
@@ -62,7 +59,7 @@ def job_create(request):
     return render(request, 'job-create.html', context)
 
 
-# Delete a Job.  Deprecated. TODO: clean this up
+# Delete a Job.  For this app, adding and deleting jobs happens in Admin
 def job_delete(request, pk):
     job = Job.objects.get(pk=pk)
 
@@ -73,6 +70,7 @@ def job_delete(request, pk):
 
 
 # Create a new application by User pk
+# TODO: make this launchable from particular job page
 def application_create(request, pk):
     user = request.user
     form = ApplicationForm()
