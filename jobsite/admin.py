@@ -1,10 +1,10 @@
 from django.contrib import admin
-from jobsite.models import Provence, Application, Job, User
+from jobsite.models import Province, Application, Job, User
 
 
-class ProvenceAdmin(admin.ModelAdmin):
-    model = Provence
-    list_display = ['name', 'provence_abbr']
+class ProvinceAdmin(admin.ModelAdmin):
+    model = Province
+    list_display = ['name', 'province_abbr']
 
 
 class UserAdmin(admin.ModelAdmin):
@@ -23,7 +23,7 @@ class ApplicationAdmin(admin.ModelAdmin):
                     'cover_letter', 'cover_letter_attachment', 'resume', 'resume_attachment']
 
 
-admin.site.register(Provence, ProvenceAdmin)
+admin.site.register(Province, ProvinceAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(Job, JobAdmin)
 admin.site.register(Application, ApplicationAdmin)

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 
-from jobsite.models import Job, Application, User, Provence
+from jobsite.models import Job, Application, User, Province
 from jobsite.forms import ApplicationForm, JobForm
 
 
