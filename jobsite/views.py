@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect
+from django.views.generic import ListView
+from django.db.models import Q
 
 from jobsite.models import Job, Application, User, Province
 from jobsite.forms import ApplicationForm, JobForm
@@ -26,6 +28,22 @@ def job_list(request):
         'jobs': jobs,
     }
     return render(request, 'job-list.html', context)
+
+
+# list view for search results
+class SearchResultsView(ListView):
+    model = Job
+    template_name = 'job-search.html'
+
+    # Override built-in get_queryset method to only include search items
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        jobs = Job.objects.filter(
+            Q(title__icontains=query) |
+            Q(description__icontains=query) |
+            Q(company_name__icontains=query)
+        )
+        return jobs
 
 
 # Detail of one job by Job pk.

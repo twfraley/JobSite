@@ -13,21 +13,12 @@
 {% block content %}
 
     <div class="header-spacer"></div>
-
-    <!-- Search Bar -->
-    <form action="{% url 'job_search' %}" method="get">
-        <div class="form-group">
-            <input name="q" type="text" placeholder="Search..." class="form-control">
-            <input type="submit" value="Submit" class="btn btn-dark">
-        </div>
-    </form>
-
-    <!-- List of Jobs -->
+    <h1>Search Results</h1>
     <div class="row">
         <div class="col-1"></div>
         <div class="col-10 list-group">
 
-            {% for job in jobs %}
+            {% for job in object_list %}
                 <a href="{% url 'job_detail' pk=job.pk %}" class="row list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{ job.title }}</h5>
