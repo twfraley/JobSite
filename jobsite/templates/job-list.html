@@ -12,21 +12,31 @@
 
 {% block content %}
 
-    <div class="header-spacer"></div>
+    <div class="header-spacer mb-5"></div>
 
     <!-- Search Bar -->
-    <form action="{% url 'job_search' %}" method="get">
-        {% csrf_token %}
-        <div class="form-group">
-            <input name="q" type="text" placeholder="Search..." class="form-control">
-            <input type="submit" value="Submit" class="btn btn-dark">
-        </div>
-    </form>
+    <div class="row mt-2">
+        <div class="col-2"></div>
+        <form action="{% url 'job_search' %}" method="get" class="col-8">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <input name="q" type="text" placeholder="Search..." class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="submit" value="Search" class="form-control btn btn-light">
+                </div>
+            </div>
+        </form>
+    </div>
 
     <!-- List of Jobs -->
     <div class="row">
         <div class="col-1"></div>
         <div class="col-10 list-group">
+        <div class="row">
+            <h2 class="pl-4 py-2">Current openings at JobSite!</h2>
+        </div>
 
             {% for job in jobs %}
                 <a href="{% url 'job_detail' pk=job.pk %}" class="row list-group-item list-group-item-action">
