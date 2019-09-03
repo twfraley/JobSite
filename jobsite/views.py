@@ -92,11 +92,11 @@ def job_delete(request, pk):
 def application_create(request, pk):
     user = request.user
     form = ApplicationForm()
+    job = Job.objects.get(pk=pk)
 
     if request.method == 'POST':
         form = ApplicationForm(request.POST, request.FILES)
         if form.is_valid():
-            job = Job.objects.get(pk=pk)
             application = Application(
                 user_firstname=form.cleaned_data['user_firstname'],
                 user_lastname=form.cleaned_data['user_lastname'],
@@ -114,6 +114,7 @@ def application_create(request, pk):
     context = {
         'form': form,
         'user': user,
+        'job': job,
         'pk': pk
     }
     return render(request, 'application-create.html', context)

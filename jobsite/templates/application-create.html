@@ -12,19 +12,25 @@
 {% block content %}
     <div class="header-spacer"></div>
 
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-            <form enctype="multipart/form-data" action="{% url 'application_create' pk=pk %}" method="POST">
-                {% csrf_token %}
-                <h1>Apply for a Job</h1>
+                <form enctype="multipart/form-data" action="{% url 'application_create' pk=pk %}" method="POST">
+                    {% csrf_token %}
+                    <h1 class="py-5">Apply to Job: {{ job.title }}</h1>
 
-                {{ form|crispy }}
+                    {{ form|crispy }}
 
-                <input type="submit" value="Submit" class="btn btn-dark">
-            </form>
+                    <div class="row">
+                        <input type="submit" value="Submit" class="btn btn-outline-secondary col-4 mx-3">
+                    </div>
+
+                </form>
+
+            </div>
         </div>
     </div>
 

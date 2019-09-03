@@ -14,6 +14,11 @@ class ApplicationForm(forms.ModelForm):
         model = Application
         fields = ['user_firstname', 'user_lastname', 'user_email', 'user_city', 'user_state', 'cover_letter', 'resume',
                   'resume_attachment']
+        labels = {
+            'user_state': 'State',
+            'cover_letter': "Cover Letter: (Optional) Type or paste your cover letter here.",
+            'resume': "Resume: Type your resume here or upload one below."
+        }
 
 
 class UserForm(forms.ModelForm):

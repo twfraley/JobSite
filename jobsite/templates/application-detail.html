@@ -9,9 +9,43 @@
 {% block title %}App Detail{% endblock %}
 
 {% block content %}
-    <div class="header-spacer"></div>
 
-    <h3>{{ application.user_firstname }} {{ application.user_lastname }}</h3>
-    <a href="{{ application.resume_attachment.url }}">{{ application.resume_attachment }}</a>
+
+    <div class="container p-5">
+        <div class="header-spacer mb-3"></div>
+        <h2>Thank you for applying!</h2>
+        <p>Please print this page or bookmark it for your records.</p>
+
+        <hr/>
+        <h3>Application Details:</h3>
+        <div class="pt-2">
+            <h4>{{ application.user_firstname }} {{ application.user_lastname }}</h4>
+        </div>
+        <p><b>Email:</b> {{ application.user_email }}</p>
+        <p><b>City:</b> {{ application.user_city }}</p>
+        <p><b>State:</b> {{ application.user_state }}</p>
+
+        <p><b>Cover Letter:</b></p>
+        <p>{{ application.cover_letter|linebreaks }}</p>
+
+
+        <p><b>Resume:</b></p>
+        <p>{{ application.resume|linebreaks }}</p>
+
+        <p><b>Uploaded resume file:</b></p>
+        <a href="{{ application.resume_attachment.url }}" target="_blank">
+            {{ application.resume_attachment }}
+        </a>
+
+        <hr/>
+        <h3>Original job Posting:</h3>
+        <h4>{{ application.job.title }}</h4>
+        <p>Company: {{ application.job.company_name }}</p>
+        <div class="row">
+            <div class="col-3">Job Description:</div>
+            <div class="col-9">{{ application.job.description|linebreaks }}</div>
+        </div>
+
+    </div>
 
 {% endblock %}

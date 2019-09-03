@@ -72,13 +72,13 @@ class Application(models.Model):
     # User Foreign Key relationship - not needed for simple application
     # user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    user_firstname = models.CharField(max_length=30)
-    user_lastname = models.CharField(max_length=30)
-    user_email = models.EmailField()
-    user_city = models.CharField(max_length=50)
+    user_firstname = models.CharField("First Name", max_length=30)
+    user_lastname = models.CharField("LastName", max_length=30)
+    user_email = models.EmailField("Email")
+    user_city = models.CharField("City", max_length=50)
     user_state = models.ForeignKey(Province, on_delete=models.PROTECT)
     job = models.ForeignKey(Job, on_delete=models.SET_NULL, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     cover_letter = models.TextField(blank=True)
     resume = models.TextField(blank=True)
-    resume_attachment = models.FileField(upload_to='documents/resumes/%Y/%m/%d/', blank=True)
+    resume_attachment = models.FileField("Upload a Resume", upload_to='documents/resumes/%Y/%m/%d/', blank=True)
