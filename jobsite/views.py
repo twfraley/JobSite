@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic import ListView
 from django.db.models import Q
 
-from jobsite.models import Job, Application, User, Province
+from jobsite.models import Job, Application
 from jobsite.forms import ApplicationForm, JobForm
 
 
@@ -14,6 +14,8 @@ def index(request):
     return render(request, 'index.html', context)
 
 
+# User login page
+# TODO: add user auth (and by extension login)
 def login(request):
     context = {}
     return render(request, 'login.html', context)
@@ -86,8 +88,7 @@ def job_delete(request, pk):
     return render(request, 'job-delete.html', context)
 
 
-# Create a new application by User pk
-# TODO: make POST method actually do something
+# Create a new application by job pk
 def application_create(request, pk):
     user = request.user
     form = ApplicationForm()
@@ -108,8 +109,7 @@ def application_create(request, pk):
                 resume_attachment=request.FILES.get('resume_attachment'),
             )
             application.save()
-
-            return redirect('job_detail', pk=job.pk)
+            return redirect('application_detail', pk=application.pk)
 
     context = {
         'form': form,
@@ -120,6 +120,7 @@ def application_create(request, pk):
 
 
 # List applications by User pk
+# TODO: make this work.  Requires login and auth.
 def application_list(request):
     context = {
     }
@@ -127,9 +128,8 @@ def application_list(request):
 
 
 # View detail by application pk
-# TODO: change this from objects.first() to something useful
-def application_detail(request):
-    application = Application.objects.first()
+def application_detail(request, pk):
+    application = Application.objects.get(pk=pk)
     context = {
         'application': application
     }
