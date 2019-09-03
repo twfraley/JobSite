@@ -24,7 +24,7 @@ def login(request):
 
 # List of all jobs
 def job_list(request):
-    jobs = Job.objects.all()
+    jobs = Job.objects.all().order_by('date_posted')
     context = {
         'jobs': jobs,
     }
