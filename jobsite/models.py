@@ -81,4 +81,4 @@ class Application(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     cover_letter = models.TextField(blank=True)
     resume = models.TextField(blank=True)
-    resume_attachment = models.FileField(upload_to='documents/resumes/', blank=True)
+    resume_attachment = models.FileField(upload_to='documents/resumes/%Y/%m/%d/', blank=True)
