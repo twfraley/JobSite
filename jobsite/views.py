@@ -55,7 +55,7 @@ def job_detail(request, pk):
     return render(request, 'job-detail.html', context)
 
 
-# Create a new Job.  TODO: move this exclusively to Django admin
+# Create a new Job.
 def job_create(request):
     form = JobForm()
 
