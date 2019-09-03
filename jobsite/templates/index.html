@@ -28,7 +28,8 @@
     <div class="header-spacer"></div>
 
     <main role="main">
-        <div class="jumbotron jumbotron-fluid px-5 index-jumbotron" style="background-image: url('{% static 'images/jumbotron_background.jpg' %}'); background-size: cover; background-position: center center;">
+        <div class="jumbotron jumbotron-fluid px-5 index-jumbotron"
+             style="background-image: url('{% static 'images/jumbotron_background.jpg' %}'); background-size: cover; background-position: center center;">
             <div class="container mx-md-5 mx-lg-5 mx-sm-1">
                 <h1 class="display-4 font-weight-bold">JobSite!</h1>
                 <h2 class="lead">Welcome to Thomas Fraley's demo Talent Search site!</h2>
@@ -43,14 +44,18 @@
             <div class="row featurette">
                 <div class="col-md-7">
                     <h2 class="featurette-heading">First awesome reason to work here.
-                        <span class="text-muted">It’ll blow your mind.</span></h2>
+                        <span class="text-muted"><a href="{% url 'job_list' %}"
+                                                    class="text-muted">It'll blow your mind.</a></span></h2>
                     <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis
                         euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus,
                         tellus ac cursus commodo.</p>
                 </div>
                 <div class="col-md-5">
-                    <img src="{% static 'images/chill_man.jpg' %}" class="index_placeholder_image"
-                         alt="Chill Happy Man">
+                    <a href="{% url 'job_list' %}">
+                        <img src="{% static 'images/chill_man.jpg' %}"
+                             class="index_placeholder_image"
+                             alt="Chill Happy Man">
+                    </a>
                 </div>
             </div>
 
@@ -59,15 +64,18 @@
             <div class="row featurette">
                 <div class="col-md-7 order-md-2">
                     <h2 class="featurette-heading">Second hip reason to work here.
-                        <span class="text-muted">See for yourself.</span>
+                        <span class="text-muted"><a href="{% url 'job_list' %}" class="text-muted">See for yourself.</a></span>
                     </h2>
                     <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis
                         euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus,
                         tellus ac cursus commodo.</p>
                 </div>
                 <div class="col-md-5 order-md-1">
-                    <img src="{% static 'images/jumping_man.jpeg' %}" class="index_placeholder_image"
-                         alt="Happy Jumping Man">
+                    <a href="{% url 'job_list' %}">
+                        <img src="{% static 'images/jumping_man.jpeg' %}"
+                             class="index_placeholder_image"
+                             alt="Happy Jumping Man">
+                    </a>
                 </div>
             </div>
 
@@ -76,14 +84,18 @@
             <div class="row featurette">
                 <div class="col-md-7">
                     <h2 class="featurette-heading">And lastly, third reason!
-                        <span class="text-muted">Perfect.</span></h2>
+                        <span class="text-muted"><a href="{% url 'job_list' %}" class="text-muted">Perfect.</a></span>
+                    </h2>
                     <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis
                         euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus,
                         tellus ac cursus commodo.</p>
                 </div>
                 <div class="col-md-5">
-                    <img src="{% static 'images/focus_man.jpg' %}" alt="Focused Working Man"
-                         class="index_placeholder_image">
+                    <a href="{% url 'job_list' %}">
+                        <img src="{% static 'images/focus_man.jpg' %}"
+                             alt="Focused Working Man"
+                             class="index_placeholder_image">
+                    </a>
                 </div>
             </div>
 
