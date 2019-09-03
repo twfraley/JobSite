@@ -127,6 +127,7 @@ def application_list(request):
 
 
 # View detail by application pk
+# TODO: change this from objects.first() to something useful
 def application_detail(request):
     application = Application.objects.first()
     context = {
