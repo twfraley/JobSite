@@ -139,12 +139,21 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE')
 
 # AWS Credentials for Media uploads
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.getenv('S3_BUCKET')
+AWS_STORAGE_BUCKET_NAME = 'safe-mesa-54979'
+AWS_S3_REGION_NAME = 'us-east-2'
+AWS_DEFAULT_ACL = None
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400'
+}
+
+DEFAULT_FILE_STORAGE = 'RecruitRooster.storage_backends.MediaStorage'
+
+AWS_LOCATION = 'static'
 
 django_heroku.settings(locals())
 

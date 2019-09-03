@@ -31,5 +31,5 @@ urlpatterns = [
     path('job-delete/<int:pk>/', job_delete, name='job_delete'),
     path('application-create/<int:pk>/', application_create, name='application_create'),
     path('application-list/', application_list, name='application_list'),
-    path('application-detail/<int:pk>/', application_detail, name='application_detail'),
+    path('application-detail/', application_detail, name='application_detail'),
 ]

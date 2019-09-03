@@ -128,6 +128,8 @@ def application_list(request):
 
 # View detail by application pk
 def application_detail(request):
+    application = Application.objects.first()
     context = {
+        'application': application
     }
     return render(request, 'application-detail.html', context)

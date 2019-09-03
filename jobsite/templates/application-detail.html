@@ -10,5 +10,8 @@
 
 {% block content %}
     <div class="header-spacer"></div>
-    Application Detail Works
+
+    <h3>{{ application.user_firstname }} {{ application.user_lastname }}</h3>
+    <a href="{{ application.resume_attachment.url }}">{{ application.resume_attachment }}</a>
+
 {% endblock %}
