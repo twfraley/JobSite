@@ -12,44 +12,50 @@
 
 {% block content %}
 
-    <div class="header-spacer"></div>
-    <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10 list-group">
-            <div class="row">
-                <h2 class="pl-4 py-2 my-5">Search Results</h2>
+    <div class=""
+         style="background-image: url('{% static 'images/jumbotron_background.jpg' %}');
+                 background-size: cover; background-position: center top; background-attachment: fixed">
+        <div class="header-spacer mb-5"></div>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 list-group">
+                <div class="row">
+                    <h2 class="pl-4 py-2 my-5">Search Results</h2>
+                </div>
             </div>
         </div>
-    </div>
 
-    {# If no search results are returned, let the user know #}
-    {% if not object_list %}
+        {# If no search results are returned, let the user know #}
+        {% if not object_list %}
             <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10 list-group">
-            <div class="row">
-                <h5 class="pl-4 py-2 my-5">No Jobs match your search results.</h5>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-
-    {# List of jobs #}
-    <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10 list-group">
-
-            {% for job in object_list %}
-                <a href="{% url 'job_detail' pk=job.pk %}" class="row list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{ job.title }}</h5>
-                        <small>{{ job.company_name }}</small>
+                <div class="col-1"></div>
+                <div class="col-10 list-group">
+                    <div class="row">
+                        <h5 class="pl-4 py-2 my-5">No Jobs match your search results.</h5>
                     </div>
-                    <p class="mb-1">{{ job.description|linebreaks }}</p>
-                    <small>{{ job.state }}</small>
-                </a>
-            {% endfor %}
+                </div>
+            </div>
+        {% endif %}
 
+        {# List of jobs #}
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 list-group">
+
+                {% for job in object_list %}
+                    <a href="{% url 'job_detail' pk=job.pk %}"
+                       class="row list-group-item list-group-item-action transparent_background">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ job.title }}</h5>
+                            <small>{{ job.company_name }}</small>
+                        </div>
+                        <p class="mb-1">{{ job.description|linebreaks }}</p>
+                        <small>{{ job.state }}</small>
+                    </a>
+                {% endfor %}
+
+            </div>
         </div>
     </div>
 
