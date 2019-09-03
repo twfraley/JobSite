@@ -20,7 +20,7 @@ class JobAdmin(admin.ModelAdmin):
 class ApplicationAdmin(admin.ModelAdmin):
     model = Application
     list_display = ['user_firstname', 'user_lastname', 'user_email', 'user_city', 'user_state', 'job', 'created_on',
-                    'cover_letter', 'cover_letter_attachment', 'resume', 'resume_attachment']
+                    'cover_letter', 'resume', 'resume_attachment']
 
 
 admin.site.register(Province, ProvinceAdmin)

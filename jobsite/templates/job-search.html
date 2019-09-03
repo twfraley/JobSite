@@ -24,7 +24,7 @@
                         <h5 class="mb-1">{{ job.title }}</h5>
                         <small>{{ job.company_name }}</small>
                     </div>
-                    <p class="mb-1">{{ job.description }}</p>
+                    <p class="mb-1">{{ job.description|linebreaks }}</p>
                     <small>{{ job.state }}</small>
                 </a>
             {% endfor %}

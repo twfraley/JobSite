@@ -20,8 +20,6 @@ def login(request):
 
 
 # List of all jobs
-# TODO: make list template
-# TODO: support search
 def job_list(request):
     jobs = Job.objects.all()
     context = {
@@ -47,7 +45,6 @@ class SearchResultsView(ListView):
 
 
 # Detail of one job by Job pk.
-# TODO: make this
 def job_detail(request, pk):
     job = Job.objects.get(pk=pk)
     context = {
@@ -90,14 +87,29 @@ def job_delete(request, pk):
 
 
 # Create a new application by User pk
-# TODO: make this launchable from particular job page
 # TODO: make POST method actually do something
 def application_create(request, pk):
     user = request.user
     form = ApplicationForm()
 
     if request.method == 'POST':
-        pass
+        form = ApplicationForm(request.POST, request.FILES)
+        if form.is_valid():
+            job = Job.objects.get(pk=pk)
+            application = Application(
+                user_firstname=form.cleaned_data['user_firstname'],
+                user_lastname=form.cleaned_data['user_lastname'],
+                user_email=form.cleaned_data['user_email'],
+                user_city=form.cleaned_data['user_city'],
+                user_state=form.cleaned_data['user_state'],
+                job=job,
+                cover_letter=form.cleaned_data['cover_letter'],
+                resume=form.cleaned_data['resume'],
+                resume_attachment=request.FILES.get('resume_attachment'),
+            )
+            application.save()
+
+            return redirect('job_detail', pk=job.pk)
 
     context = {
         'form': form,

@@ -52,7 +52,7 @@ class Job(models.Model):
     # Localization.  Required for Google Talent API
     # language_code = 'en-US'
 
-    company_name = models.CharField(max_length=50)
+    company_name = models.CharField(max_length=50, default='JobSite!')
     description = models.TextField()
     title = models.CharField(max_length=50)
     address_one = models.CharField(max_length=120)
@@ -80,6 +80,5 @@ class Application(models.Model):
     job = models.ForeignKey(Job, on_delete=models.SET_NULL, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     cover_letter = models.TextField(blank=True)
-    cover_letter_attachment = models.FileField(upload_to='documents/cover_letters/', blank=True)
     resume = models.TextField(blank=True)
     resume_attachment = models.FileField(upload_to='documents/resumes/', blank=True)

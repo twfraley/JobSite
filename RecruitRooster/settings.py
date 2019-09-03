@@ -32,11 +32,10 @@ if os.path.isfile(dotenv_file):
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = env('SECRET_KEY')
-SECRET_KEY = '(3e&i+yno7oc72+zu!c4_xc7@67!8crkvic8)5#-%14yk@+@%a'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -52,7 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'jobsite',
-    'crispy_forms'
+    'crispy_forms',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -139,8 +139,9 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# TODO: Set up Media Root (or update static_url?) for resume/cover letter uploads
-# MEDIA_ROOT = ''
+if os.path.isfile(dotenv_file):
+    MEDIA_URL = os.getenv('MEDIA_URL')
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 django_heroku.settings(locals())
 
