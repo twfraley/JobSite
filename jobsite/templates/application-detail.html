@@ -34,10 +34,12 @@
             <p><b>Resume:</b></p>
             <p>{{ application.resume|linebreaks }}</p>
 
-            <p><b>Uploaded resume file:</b></p>
-            <a href="{{ application.resume_attachment.url }}" target="_blank">
-                {{ application.resume_attachment }}
-            </a>
+            {% if application.resume_attachment %}
+                <p><b>Uploaded resume file:</b></p>
+                <a href="{{ application.resume_attachment.url }}" target="_blank">
+                    {{ application.resume_attachment }}
+                </a>
+            {% endif %}
 
             <hr/>
             <h3>Original job Posting:</h3>

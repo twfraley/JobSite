@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -97,6 +98,8 @@ def application_create(request, pk):
     if request.method == 'POST':
         form = ApplicationForm(request.POST, request.FILES)
         if form.is_valid():
+            # if not form.cleaned.data['resume'] or request.FILES.get('resume_attachment'):
+            #     raise ValidationError()
             application = Application(
                 user_firstname=form.cleaned_data['user_firstname'],
                 user_lastname=form.cleaned_data['user_lastname'],
