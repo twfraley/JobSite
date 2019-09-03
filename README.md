@@ -18,7 +18,7 @@ You'll need Postgres installed and running on your machine.  For help with this,
 
 From the terminal, run `$ createdb jobsite` and wait for confirmation that postgres has spun up a new database.
 
-Once your postgres database is up and running, create a new file (still in the root) named `.env` and add this line to the file: `DATABASE_URL=postgres://localhost:5432/jobsite`.  
+Once your postgres database is up and running, create a new file (still in the root) named `.env` and add this line to the file: `DATABASE_URL=postgres://localhost:5432/jobsite`. If you want to run in Debug mode, also add: `DEBUG=True`.  There are other .env variables you'll need for the AWS E3 storage to work, but those are secret.  Ask me for them if you need them. 
 
 Once .env is saved, run (still in the root) `$ ./manage.py migrate` to run migrations.
 
@@ -28,18 +28,20 @@ Congratulations!  You should be good to go.
 Right now the site admins can only create, edit, and delete job listings through the Django admin portal; Ideally this would be accomplished in-app, or at least the admin portal should be styled and formatted for different levels of admin users.
 
 Still to-do:
-- [ ] Create user login, homepage to view all of a particular user's applications
+- [ ] Create "save as PDF" option (or ideally a celery email task?) for a user to save their application once they're done. 
+- [ ] Create user login, homepage for a user to view all of their applications
 - [ ] Incorporate Google Cloud Talent API
 - [ ] Styling - less "default bootstrappy"
 
-## Technologies and techniques:
+## Technologies and features:
 - Python 3.7
 - Django
 - PostgreSQL
 - Heroku
+- AWS S3 storage (for user-uploaded resumes)
 - HTML5 (Django templates)
 - CSS3 (lots of Bootstrap)
 - reversible data migrations for database populations
 - django crispy forms for form styling
-- .env file for local/production environmental variables
-- file uploads, storage, and retrieval in server filesystem
+- separate local/production environmental variables
+- file uploads, storage, and retrieval in AWS E3 filesystem

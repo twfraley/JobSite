@@ -15,33 +15,29 @@ import dj_database_url
 import dotenv
 import django_heroku
 
-# ROOT_DIR = environ.Path(__file__) - 2  # (jobsite/RecruitRooster/settings.py - 2 = jobsite
-# env = environ.Env()
-
-# Reads local .env file
-# env.read_env(str(ROOT_DIR.path('.env')))
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
+# dotenv settings to read environmental variables on Local
 dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# Pulled from environmental variables in Prod and .env file running locally
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Pulled from environmental variables in Prod and .env file running locally
 DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -54,7 +50,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'storages',
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -66,8 +61,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+# set where to look for URLs
 ROOT_URLCONF = 'RecruitRooster.urls'
 
+
+# set template processors and locations
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -85,21 +84,24 @@ TEMPLATES = [
     },
 ]
 
+
+# Crispy makes basic form styling super fast.  Here is where you set the theme.
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+
+# WSGI location for Heroku to run the app (using Gunicorn)
 WSGI_APPLICATION = 'RecruitRooster.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
+# Database info stored in environmental variables for different environments
 DATABASES = {}
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -118,43 +120,42 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'America/New_York'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
+# Set whitenoise vars for Heroku to serve static files in prod
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-# AWS Credentials for Media uploads
+# AWS Credentials for User file uploads
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'safe-mesa-54979'
 AWS_S3_REGION_NAME = 'us-east-2'
 AWS_DEFAULT_ACL = None
-
+AWS_LOCATION = 'static'
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400'
 }
 
+
+# Sets storage location for user uploads
 DEFAULT_FILE_STORAGE = 'RecruitRooster.storage_backends.MediaStorage'
 
-AWS_LOCATION = 'static'
 
+# for django-heroku to work
 django_heroku.settings(locals())
 
+
+# for local/heroku databases to work
 del DATABASES['default']['OPTIONS']['sslmode']
