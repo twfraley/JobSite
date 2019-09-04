@@ -27,7 +27,7 @@ Once .env is saved, run (still in the root) `$ ./manage.py migrate` to run migra
 Congratulations!  You should be good to go.
 
 ## Known issues
-Big one: Auth still isn't up.  User authentication, signup, and login should be coming soon.
+Big one: Auth still isn't all the way up.  User authentication, signup, and login should be coming soon.
 
 Right now the site admins can only create, edit, and delete job listings through the Django admin portal; Ideally this would be accomplished in-app, or at least the admin portal should be styled and formatted for different levels of admin users.
 

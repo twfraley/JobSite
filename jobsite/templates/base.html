@@ -35,7 +35,7 @@
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <div class="nav-link no-decoration">Hi {{ user }}!</div>
+                        <a class="nav-link" href="{% url 'application_list' %}">View my application</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Log Out</a></p>

@@ -132,7 +132,6 @@ def application_create(request, pk):
 
 
 # List applications by User pk
-# TODO: make this work.  Requires login and auth.
 def application_list(request):
     user = request.user
     list = UserApplication.objects.filter(user=user)
