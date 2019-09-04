@@ -15,15 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views as auth_views
 
-from jobsite.views import index, job_list, job_create, job_delete, job_detail, login, application_create, \
+from jobsite.views import index, job_list, job_create, job_delete, job_detail, application_create, \
     application_detail, application_list, SearchResultsView
 
 # Typically would spread URL files into each namespace, but not needed with a small app like this
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
-    path('login/', login, name='login'),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('job-list/', job_list, name='job_list'),
     path('job-search/', SearchResultsView.as_view(), name='job_search'),
     path('job-detail/<int:pk>/', job_detail, name='job_detail'),
