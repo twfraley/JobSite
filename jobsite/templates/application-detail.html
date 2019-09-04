@@ -14,7 +14,7 @@
          style="background-image: url('{% static 'images/jumbotron_background.jpg' %}');
                  background-size: cover; background-position: center top; background-attachment: fixed">
         <div class="header-spacer mb-5"></div>
-        <div class="container transparent_background p-5">
+        <form class="container transparent_background p-5">
             <h2>Thank you for applying!</h2>
             <p>Please print this page or bookmark it for your records.</p>
 
@@ -50,7 +50,41 @@
                 <div class="col-9">{{ application.job.description|linebreaks }}</div>
             </div>
 
-        </div>
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'application_detail' pk=user.pk %}">
+                    <div class="">
+                        <input style="" type="submit" value="Click to assign to your user profile">
+                    </div>
+                </form>
+
+            {% else %}
+                <div>
+                    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+                    <form method="post" action="{% url 'application_detail' pk=user.pk %}">
+                        {% csrf_token %}
+                        <table>
+                            <tr>Sign up to view your application easier next time</tr>
+                            <tr>
+                                <td>{{ form.username.label_tag }}</td>
+                                <td>{{ form.username }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ form.password1.label_tag }}</td>
+                                <td>{{ form.password1 }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ form.password2.label_tag }}</td>
+                                <td>{{ form.password2 }}</td>
+                            </tr>
+                        </table>
+
+                        <input type="submit" value="Sign Up">
+                    </form>
+                </div>
+            {% endif %}
+
+    </div>
     </div>
 
 {% endblock %}

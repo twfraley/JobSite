@@ -20,7 +20,7 @@ You'll need Postgres installed and running on your machine.  For help with this,
 
 From the terminal, run `$ createdb jobsite` and wait for confirmation that postgres has spun up a new database.
 
-Once your postgres database is up and running, create a new file (still in the root) named `.env` and add this line to the file: `DATABASE_URL=postgres://localhost:5432/jobsite`. If you want to run in Debug mode, also add: `DEBUG=True`.  There are other .env variables you'll need for the AWS E3 storage to work, but those are secret.  Ask me for them if you need them. 
+Once your postgres database is up and running, create a new file (still in the root) named `.env` and add this line to the file: `DATABASE_URL=postgres://localhost:5432/jobsite`. If you want to run in Debug mode, also add: `DEBUG=True`.  There are other .env variables you'll need for the Django app and AWS E3 storage to work, but those are secret.  Ask me for them. 
 
 Once .env is saved, run (still in the root) `$ ./manage.py migrate` to run migrations.
 
@@ -49,4 +49,4 @@ Still to-do:
 - reversible data migrations for database populations
 - django crispy forms for form styling
 - separate local/production environmental variables
-- file uploads, storage, and retrieval in AWS E3 filesystem
+- 

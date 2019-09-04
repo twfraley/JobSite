@@ -10,12 +10,12 @@ class Province(models.Model):
         return self.name
 
 
+# Not used.  See green comment text below.
 class User(UserModel):
     """
-    Standard built-in User model.
-    Required fields: username, password
-    useful optional fields: first_name, last_name, email
-    Documentation: https://docs.djangoproject.com/en/2.2/ref/contrib/auth/#user-model
+    Implemented too late for this project; Ideally would reference AbstractUser from the start.
+    Changing User Auth schemes after making migrations or running the app is tricky.
+    Info: https://docs.djangoproject.com/en/2.2/topics/auth/customizing/#extending-user
     """
 
     street = models.TextField(max_length=50)
@@ -25,7 +25,7 @@ class User(UserModel):
     # Returns first + last name if the user has provided them. Otherwise returns required username
     def __str__(self):
         if self.first_name and self.last_name:
-            return self.first_name + ' ' + self.last_name
+            return '%s %s' % (self.first_name, self.last_name)
         else:
             return self.username
 
@@ -82,3 +82,8 @@ class Application(models.Model):
     cover_letter = models.TextField(blank=True)
     resume = models.TextField(blank=True)
     resume_attachment = models.FileField("Upload a Resume", upload_to='documents/resumes/%Y/%m/%d/', blank=True)
+
+
+class UserApplication(models.Model):
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    application = models.ForeignKey(Application, on_delete=models.CASCADE)

@@ -85,7 +85,7 @@ TEMPLATES = [
 ]
 
 LOGIN_REDIRECT_URL = 'index'
-
+LOGOUT_REDIRECT_URL = 'index'
 
 # Crispy makes basic form styling super fast.  Here is where you set the theme.
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

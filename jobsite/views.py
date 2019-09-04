@@ -1,11 +1,13 @@
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User as UserModel
 from django.db.models import Q
 
-from jobsite.models import Job, Application
+from jobsite.models import Job, Application, UserApplication
 from jobsite.forms import ApplicationForm, JobForm
 
 
@@ -15,11 +17,11 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-# User login page
-# TODO: add user auth (and by extension login)
-def login(request):
-    context = {}
-    return render(request, 'login.html', context)
+# New User Registration
+class SignUp(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signup.html'
 
 
 # List of all jobs
@@ -57,6 +59,8 @@ def job_detail(request, pk):
 
 
 # Create a new Job.
+# Deprecated.  Done entirely through Admin now
+"""
 def job_create(request):
     form = JobForm()
 
@@ -77,9 +81,12 @@ def job_create(request):
         'form': form
     }
     return render(request, 'job-create.html', context)
+"""
 
 
-# Delete a Job.  For this app, adding and deleting jobs happens in Admin
+# Delete a Job.
+# Deprecated. For this app, adding and deleting jobs happens in Admin
+"""
 def job_delete(request, pk):
     job = Job.objects.get(pk=pk)
 
@@ -87,6 +94,7 @@ def job_delete(request, pk):
         'job': job,
     }
     return render(request, 'job-delete.html', context)
+"""
 
 
 # Create a new application by job pk
@@ -126,7 +134,10 @@ def application_create(request, pk):
 # List applications by User pk
 # TODO: make this work.  Requires login and auth.
 def application_list(request):
+    user = request.user
+    list = UserApplication.objects.filter(user=user)
     context = {
+        'list': list
     }
     return render(request, 'application-list.html', context)
 
@@ -134,7 +145,29 @@ def application_list(request):
 # View detail by application pk
 def application_detail(request, pk):
     application = Application.objects.get(pk=pk)
+    form = UserCreationForm
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            if request.user.is_authenticated():
+                user = request.user
+            else:
+                user = UserModel(
+                    username=form.cleaned_data['username'],
+                    password1=form.cleaned_data['password1'],
+                    password2=form.cleaned_data['password2']
+                )
+                user.save()
+
+            user_application = UserApplication(
+                user=user,
+                application=application
+            )
+            user_application.save()
+
     context = {
-        'application': application
+        'application': application,
+        'form': form
     }
     return render(request, 'application-detail.html', context)

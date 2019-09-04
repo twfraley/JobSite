@@ -1,14 +1,42 @@
 {% extends "base.html" %}
 
 {% block css %}
-    {# requires "load static" inside block tags or else static files don't work #}
+    {# requires "load static" inside block tags on templates or else static files don't work #}
     {% load static %}
+
     <link rel="stylesheet" href="{% static "CSS/main.css" %}">
+
 {% endblock %}
 
-{% block title %}App List{% endblock %}
+{% block title %}Job Listing{% endblock %}
 
 {% block content %}
-    <div class="header-spacer"></div>
-    Application List Works
+
+    <div class=""
+         style="background-image: url('{% static 'images/jumbotron_background.jpg' %}');
+                 background-size: cover; background-position: center top; background-attachment: fixed">
+        <div class="header-spacer mb-5"></div>
+
+        <!-- List of applications -->
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 list-group">
+                <div class="row">
+                    <h2 class="pl-4 py-2">Your current applications!</h2>
+                </div>
+
+                {% for item in list %}
+                    <a href="{% url 'application_detail' pk=item.application.pk %}" class="row list-group-item list-group-item-action transparent_background">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ item.application.job.title }}</h5>
+                            <small>{{ item.application.job.company_name }}</small>
+                        </div>
+                        <p class="mb-1">{{ item.application.job.description|linebreaks }}</p>
+                        <small>{{ item.application.job.state }}</small>
+                    </a>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

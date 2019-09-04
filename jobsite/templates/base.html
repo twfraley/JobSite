@@ -32,14 +32,28 @@
                     <a class="nav-link" href="{% url 'job_list' %}">JobList</a>
                 </li>
             </ul>
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <div class="nav-link no-decoration">Hi {{ user }}!</div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a></p>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Log in to see your Applications</a>
+                    </li>
+                {% endif %}
+            </ul>
         </div>
     </nav>
 </header>
 
 <div class="content">
-{% block content %}
-    <h1> Something in the templates broke ¯\_(ツ)_/¯ </h1>
-{% endblock %}
+    {% block content %}
+        <h1> Something in the templates broke ¯\_(ツ)_/¯ </h1>
+    {% endblock %}
 </div>
 
 <!-- FOOTER -->
