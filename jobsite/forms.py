@@ -27,6 +27,6 @@ class UserForm(forms.ModelForm):
         fields = ['username', 'password', 'first_name', 'last_name', 'email', 'street', 'city', 'state']
 
 
-# Turns out I probably don't need this for basic search
+# Turns out I don't need this for basic search
 class SearchForm(forms.Form):
     pass
