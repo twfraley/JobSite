@@ -35,6 +35,7 @@ Still to-do:
 - [ ] Create "save as PDF" option (or ideally a celery email task?) for a user to save their application once they're done. 
 - [ ] Create user login, homepage for a user to view all of their applications
 - [ ] Incorporate Google Cloud Talent API
+- [ ] Tests!  This maybe should be higher up the list.
 - [ ] Figure out "double-return breaks styling" bug on job postings
 - [ ] Styling - less "default bootstrappy"
 
