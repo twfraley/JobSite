@@ -7,4 +7,6 @@ class UserApplicationTestCase(TestCase):
 
 # Primarily to test Google Talent API
 class JobTestCase(TestCase):
-    pass
+
+    def job_was_created_on_google_talent_api(self):
+        pass
