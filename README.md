@@ -2,7 +2,7 @@
 
 Created by Thomas Fraley using Django, hosted on Heroku.
 
-Web app is live here: https://safe-mesa-54979.herokuapp.com/
+Web app is live here: https://rooster-job-site.herokuapp.com/
 
 ## About the App
 The JobSite! web app is a personal project made by Thomas Fraley.  
