@@ -1,4 +1,4 @@
-# RecruitRoosterTest
+# JobSite!
 
 Created by Thomas Fraley using Django, hosted on Heroku.
 
